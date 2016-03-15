@@ -382,6 +382,10 @@ class StreamController extends EventHandler {
     var media = this.media;
     if (media) {
       var vbuffered = media.buffered, buffered = [],i;
+      if(media.sourceBuffer && media.sourceBuffer.video){
+        //console.info('media.sourceBuffer', media.sourceBuffer);
+        vbuffered = media.sourceBuffer.video.buffered;
+      }
       for (i = 0; i < vbuffered.length; i++) {
         buffered.push({start: vbuffered.start(i), end: vbuffered.end(i)});
       }
